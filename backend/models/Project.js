@@ -10,7 +10,17 @@ const projectSchema = new mongoose.Schema({
   tags: [String],
   teamMembers: [String],
   guideName: String,
-  uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: "Admin" }
-});
+
+  uploadedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Admin"
+  },
+
+  downloadCount: {
+    type: Number,
+    default: 0
+  }
+
+}, { timestamps: true });   // ⭐ IMPORTANT
 
 module.exports = mongoose.model("Project", projectSchema);

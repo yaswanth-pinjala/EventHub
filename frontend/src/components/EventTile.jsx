@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import API from "../services/api";
+
 const EventTile = ({ ev }) => {
   const navigate = useNavigate();
   const imageUrl = ev.posterImage
@@ -39,7 +41,20 @@ const EventTile = ({ ev }) => {
         >
           View
         </button>
-        <button className="px-4 py-1 border border-blue-600 text-blue-600 rounded">
+        <button
+          className="px-4 py-1 border border-blue-600 text-blue-600 rounded"
+          onClick={async () => {
+            try {
+              const res = await API.post("/registrations/register", {
+                eventId: ev._id,
+              });
+
+              alert(res.data.message);
+            } catch (err) {
+              alert(err.response?.data?.message || "Registration Failed");
+            }
+          }}
+        >
           Register
         </button>
       </div>

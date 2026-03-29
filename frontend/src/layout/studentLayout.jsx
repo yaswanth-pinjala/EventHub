@@ -59,7 +59,7 @@ const StudentLayout = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex">
+    <div className="h-screen bg-gray-100 flex overflow-hidden">
       {/* SIDEBAR */}
       <aside className="w-64 bg-white shadow-lg flex flex-col">
         {/* LOGO */}
@@ -82,7 +82,7 @@ const StudentLayout = () => {
             {menuItem("registered-events", "Registered Events")}
             {menuItem("notifications", "Notifications")}
             {menuItem("certificates", "Event Certificates")}
-            {menuItem("projects", "Projects")}
+            {menuItem("projects", "AcademicProjects")}
           </ul>
         </nav>
 
@@ -132,7 +132,7 @@ const StudentLayout = () => {
               <button
                 onClick={() => {
                   localStorage.clear();
-                  navigate("/login/student");
+                  navigate("/");
                 }}
                 className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
               >
@@ -144,7 +144,7 @@ const StudentLayout = () => {
       </aside>
 
       {/* MAIN CONTENT */}
-      <main className="flex-1">
+      <main className="flex-1 overflow-auto">
         <Outlet />
       </main>
     </div>

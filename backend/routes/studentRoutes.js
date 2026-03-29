@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../middleware/authMiddleware");
+const role = require("../middleware/roleMiddleware");
+const { changeStudentPassword } = require("../controllers/studentController");
 const upload = require("../middleware/upload");
 const Student = require("../models/Student");
 
@@ -17,6 +19,13 @@ router.get("/me", authMiddleware, async (req, res) => {
     res.status(500).json({ message: "Failed to load profile" });
   }
 });
+
+router.put(
+  "/change-password",
+  authMiddleware,
+  role("student"),
+  changeStudentPassword
+);
 
 // UPDATE MY PROFILE
 router.put(

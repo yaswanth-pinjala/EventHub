@@ -56,6 +56,10 @@ const Dashboard = () => {
   );
 
   return (
+    <div>
+      <header className="bg-white shadow-md px-6 py-4 sticky top-0 z-20">
+        <h1 className="text-xl font-semibold">Dashboard</h1>
+      </header>
     <div className="p-6 space-y-8">
       {/* TOP STATS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -93,19 +97,11 @@ const Dashboard = () => {
         <h2 className="text-lg font-semibold mb-4">Upcoming Events</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {upcomingEvents.slice(0, 6).map((event) => (
-            <EventTile
-              key={event._id}
-              ev={{
-                title: event.title,
-                type: event.type || "Event",
-                date: new Date(event.date).toDateString(),
-                posterImage: event.posterImage,
-                venue: event.venue,
-              }}
-            />
+            <EventTile key={event._id} ev={event} />
           ))}
         </div>
       </div>
+    </div>
     </div>
   );
 };

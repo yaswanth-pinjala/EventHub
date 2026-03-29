@@ -1,9 +1,29 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/authMiddleware");
-const { createCertificateRecord, getCertificatesForStudent } = require("../controllers/certificateController");
-// Called by event admin / backend when certificate generated
-router.post("/create", auth, createCertificateRecord);
-// Student views their certificates
+const multer = require("multer");
+const upload = require("../middleware/uploadCertificates");
+const uploadZip = require("../middleware/uploadZip");
+const {
+  uploadZipCertificates,
+  getCertificatesForStudent,
+  downloadCertificate
+} = require("../controllers/certificateController");
+const role = require("../middleware/roleMiddleware");
+
+/* Admin uploads certificate */
+
+router.post(
+  "/upload-zip/:eventId",
+  auth,
+  role("admin","event"),
+  uploadZip.single("zip"),
+  uploadZipCertificates
+);
+
+/* Student views certificates */
 router.get("/my", auth, getCertificatesForStudent);
+/* Download certificate */
+router.get("/download/:id", auth, downloadCertificate);
+
 module.exports = router;

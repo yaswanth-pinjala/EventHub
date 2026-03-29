@@ -7,7 +7,15 @@ const studentSchema = new mongoose.Schema({
   regNo: String,
   idCardUpload: String,
   department: String,
-  academicYear: String
+  academicYear: String,
+
+  phone: Number,        // ⭐ new
+  gender: String,       // ⭐ new
+
+  year: Number,         // ⭐ auto calculated
+
+  otp: String,
+  otpExpiry: Date
 });
 
 module.exports = mongoose.model("Student", studentSchema);

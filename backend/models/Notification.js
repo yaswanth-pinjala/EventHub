@@ -1,10 +1,15 @@
 const mongoose = require("mongoose");
 
 const notificationSchema = new mongoose.Schema({
-  title: String,
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Student"
+  },
   message: String,
-  targetRole: String,
-  createdAt: { type: Date, default: Date.now }
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model("Notification", notificationSchema);

@@ -56,16 +56,18 @@ const RegisteredEvents = () => {
       <div className="p-6 text-gray-500">Loading registered events...</div>
     );
   }
-
+  const sortedEvents = [...filteredEvents].sort((a, b) => {
+    return new Date(b.date) - new Date(a.date);
+  });
   return (
     <div>
-      <header className="bg-white shadow-md px-6 py-4">
+      <header className="bg-white shadow-md px-6 py-4 sticky top-0 z-20">
         <h1 className="text-xl font-semibold">Registered Events</h1>
       </header>
 
       {/* EVENTS LIST */}
       <div className="px-6 py-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredEvents.map((event) => (
+        {sortedEvents.map((event) => (
           <div
             key={event.id}
             className="bg-white rounded-xl shadow hover:shadow-lg transition-shadow duration-300 overflow-hidden"

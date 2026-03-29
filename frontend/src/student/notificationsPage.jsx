@@ -30,7 +30,7 @@ const NotificationPage = () => {
 
   return (
     <div>
-      <header className="bg-white shadow-md px-6 py-4">
+      <header className="bg-white shadow-md px-6 py-4 sticky top-0 z-20">
         <h1 className="text-xl font-semibold">Notifications</h1>
       </header>
 
