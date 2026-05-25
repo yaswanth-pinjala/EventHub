@@ -36,19 +36,30 @@ exports.createEvent = async (req, res) => {
     });
 
     // 4️⃣ Send Emails + Save Notifications
-    await Promise.all(
+    // Send success response immediately
+res.status(201).json({
+  message: "Event created successfully"
+});
+
+// Send notifications + emails in background
+setImmediate(async () => {
+
+  try {
+
+    await Promise.allSettled(
 
       students.map(async (student) => {
 
-        const message = `New event "${event.title}" has been created`;
+        const message =
+          `New event "${event.title}" has been created`;
 
-        // Save Notification
+        // Save notification
         await Notification.create({
           userId: student._id,
           message
         });
 
-        // Send Email
+        // Send email
         await sendEmail(
           student.email,
           `New Event: ${event.title}`,
@@ -62,10 +73,13 @@ exports.createEvent = async (req, res) => {
           <p><b>Date:</b> ${event.date.toDateString()}</p>
           <p><b>Venue:</b> ${event.venue}</p>
           <p><b>Time:</b> ${event.time}</p>
+
           <hr>
 
           <p>Created by:</p>
+
           <p><b>${adminName}</b></p>
+
           <p>${adminEmail}</p>
 
           <p>Please login to EventHub portal to register.</p>
@@ -76,9 +90,18 @@ exports.createEvent = async (req, res) => {
 
     );
 
-    res.status(201).json({
-      message: "Event created and notifications sent"
-    });
+    console.log("Emails sent successfully");
+
+  } catch (mailErr) {
+
+    console.error(
+      "BACKGROUND EMAIL ERROR:",
+      mailErr
+    );
+
+  }
+
+});
 
   } catch (err) {
     console.error("CREATE EVENT ERROR:", err);
