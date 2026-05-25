@@ -38,7 +38,7 @@ exports.uploadZipCertificates = async (req, res) => {
       const cert = new Certificate({
         userId: student._id,
         eventId,
-        certificateURL: `uploads/certificates/${file}`
+        certificateURL: `/uploads/certificates/${file}`
       });
 
       await cert.save();
@@ -79,6 +79,7 @@ exports.getCertificatesForStudent = async (req, res) => {
 
 exports.downloadCertificate = async (req, res) => {
   try {
+
     const certificate = await Certificate.findById(req.params.id);
 
     if (!certificate) {
@@ -87,13 +88,16 @@ exports.downloadCertificate = async (req, res) => {
       });
     }
 
+    // Fix Windows slashes for Render/Linux
+    const normalizedPath = certificate.certificateURL.replace(/\\/g, "/");
+
     const filePath = path.join(
       __dirname,
       "..",
-      certificate.certificateURL
+      normalizedPath
     );
 
-    console.log("FILE PATH:", filePath);
+    console.log("Resolved Path:", filePath);
 
     if (!fs.existsSync(filePath)) {
       return res.status(404).json({
@@ -104,10 +108,12 @@ exports.downloadCertificate = async (req, res) => {
     res.download(filePath);
 
   } catch (error) {
+
     console.error("Download error:", error);
 
     res.status(500).json({
       message: "Download failed",
     });
+
   }
 };
