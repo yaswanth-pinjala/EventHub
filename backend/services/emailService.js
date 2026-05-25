@@ -12,10 +12,24 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.sendEmail = async (to, subject, html) => {
-  await transporter.sendMail({
-    from: `"EventHub" <${process.env.EMAIL}>`,
-    to,
-    subject,
-    html
-  });
+
+  try {
+
+    const info = await transporter.sendMail({
+      from: process.env.EMAIL,
+      to,
+      subject,
+      html,
+    });
+
+    console.log("EMAIL SENT:", info.response);
+
+  } catch (err) {
+
+    console.error("EMAIL FAILED:", err);
+
+    throw err;
+
+  }
+
 };

@@ -169,7 +169,7 @@ exports.updateEvent = async (req, res) => {
     /* SEND EMAILS */
     const emailPromises = students.map(student =>
       transporter.sendMail({
-        from: process.env.EMAIL_USER,
+        from: process.env.EMAIL,
         to: student.email,
         subject: "Event Updated",
         html: `
