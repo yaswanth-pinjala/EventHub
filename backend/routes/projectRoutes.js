@@ -43,24 +43,45 @@ router.get("/", auth, getProjectsForDept);
 ============================= */
 router.get("/download/:id", auth, async (req, res) => {
   try {
+
     const project = await Project.findById(req.params.id);
 
     if (!project) {
-      return res.status(404).json({ message: "Project not found" });
+      return res.status(404).json({
+        message: "Project not found"
+      });
     }
 
-    project.downloadCount = (project.downloadCount || 0) + 1;
+    project.downloadCount =
+      (project.downloadCount || 0) + 1;
+
     await project.save();
 
-    const filePath = path.join(__dirname, "..", project.filePath);
+    // Fix Windows paths for Linux/Render
+    const normalizedPath =
+      project.filePath.replace(/\\/g, "/");
 
-    const fileName = project.filePath.split("\\").pop().split("/").pop();
+    const filePath = path.join(
+      __dirname,
+      "..",
+      normalizedPath
+    );
+
+    console.log("Resolved Path:", filePath);
+
+    const fileName =
+      normalizedPath.split("/").pop();
 
     res.download(filePath, fileName);
 
   } catch (err) {
+
     console.error(err);
-    res.status(500).json({ message: "Download failed" });
+
+    res.status(500).json({
+      message: "Download failed"
+    });
+
   }
 });
 
