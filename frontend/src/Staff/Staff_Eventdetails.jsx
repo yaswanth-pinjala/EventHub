@@ -41,7 +41,7 @@ const Staff_Eventdetails = () => {
       {/* EVENT DETAILS */}
       <div className="bg-white p-6 rounded-xl shadow">
         <img
-          src={`http://localhost:5000/${event.posterImage}`}
+          src={`https://eventhub-ln9y.onrender.com/${event.posterImage}`}
           alt={event.title}
           className="w-full h-64 object-cover rounded-lg mb-4"
         />

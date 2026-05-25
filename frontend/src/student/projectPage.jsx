@@ -16,7 +16,7 @@ export default function ProjectList() {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-          "http://localhost:5000/api/projects",
+          "https://eventhub-ln9y.onrender.com/api/projects",
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -52,7 +52,7 @@ const handleDownload = async (id) => {
     const token = localStorage.getItem("token");
 
     const response = await axios.get(
-      `http://localhost:5000/api/projects/download/${id}`,
+      `https://eventhub-ln9y.onrender.com/api/projects/download/${id}`,
       {
         responseType: "blob",
         headers: {

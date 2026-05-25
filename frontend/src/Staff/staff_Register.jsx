@@ -112,7 +112,7 @@ export default function StaffRegistration() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-200 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-r from-sky-100 to-blue-200 flex items-center justify-center">
       <div className="bg-white shadow-xl rounded-2xl w-full max-w-2xl p-8">
         <h2 className="text-3xl font-bold text-center text-indigo-600 mb-6">
           Staff Registration

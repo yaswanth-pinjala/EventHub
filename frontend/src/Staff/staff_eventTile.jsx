@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 const EventTile = ({ ev }) => {
   const navigate = useNavigate();
   const imageUrl = ev.posterImage
-    ? `http://localhost:5000/${ev.posterImage}`
+    ? `https://eventhub-ln9y.onrender.com/${ev.posterImage}`
     : null;
 
   return (

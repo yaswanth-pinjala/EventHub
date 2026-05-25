@@ -37,7 +37,7 @@ const ViewEvent = () => {
 
       {event.posterImage && (
         <img
-          src={`http://localhost:5000/${event.posterImage}`}
+          src={`https://eventhub-ln9y.onrender.com/${event.posterImage}`}
           alt="poster"
           className="mt-4 w-64 rounded shadow"
         />

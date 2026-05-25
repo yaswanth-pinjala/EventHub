@@ -68,7 +68,7 @@ const EventsPageAdmin = () => {
               className="bg-white shadow rounded-xl p-4"
             >
               <img
-                src={`http://localhost:5000/${event.posterImage}`}
+                src={`https://eventhub-ln9y.onrender.com/${event.posterImage}`}
                 alt={event.title}
                 className="h-40 w-full object-cover rounded-lg mb-3"
               />

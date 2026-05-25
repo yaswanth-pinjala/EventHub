@@ -47,7 +47,7 @@ const ViewProject = () => {
 
         <p><b>Guide:</b> {project.guideName}</p>
 
-        <p><b>Department:</b> {project.department}</p>
+        {/* <p><b>Department:</b> {project.department}</p> */}
 
         <p><b>Tags:</b> {project.tags?.join(", ")}</p>
 

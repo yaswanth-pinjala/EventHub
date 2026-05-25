@@ -28,7 +28,7 @@ const RegisteredEvents = () => {
           description: r.eventId.description,
           status: r.status || "Registered",
           poster: r.eventId.posterImage
-            ? `http://localhost:5000/${r.eventId.posterImage}`
+            ? `https://eventhub-ln9y.onrender.com/${r.eventId.posterImage}`
             : null,
         }));
 

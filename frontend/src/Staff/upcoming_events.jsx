@@ -43,7 +43,7 @@ const TeacherUpcomingEvents = () => {
                   <img
                     src={
                       event.posterImage
-                        ? `http://localhost:5000/${event.posterImage}`
+                        ? `https://eventhub-ln9y.onrender.com/${event.posterImage}`
                         : ""
                     }
                     alt={event.title}

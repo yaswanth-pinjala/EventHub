@@ -48,7 +48,7 @@ const Profile = () => {
   };
 
   const getAvatar = () => {
-    if (profile.photo) return `http://localhost:5000/${profile.photo}`;
+    if (profile.photo) return `https://eventhub-ln9y.onrender.com/${profile.photo}`;
     return profile.gender === "Female" ? defaultGirl : defaultMen;
   };
 

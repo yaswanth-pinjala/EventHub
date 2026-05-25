@@ -84,7 +84,7 @@ const EventCertificates = () => {
             />
 
             <p className="text-sm text-gray-500 mt-2">
-              File name must be Student RegNo Example: <b>Y22ACS529.pdf</b>
+              File name must be Student RegNo Example: <b>Y22ACSXXX.pdf</b>
             </p>
           </div>
 

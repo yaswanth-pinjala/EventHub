@@ -20,7 +20,7 @@ export default function CertificateDashboard() {
           module: c.eventId.type,
           date: new Date(c.generatedAt).toDateString(),
           description: `Certificate for ${c.eventId.title}`,
-          fileUrl: `http://localhost:5000/${c.certificateURL}`,
+          fileUrl: `https://eventhub-ln9y.onrender.com/${c.certificateURL}`,
           registered: true,
         }));
 
@@ -55,9 +55,9 @@ export default function CertificateDashboard() {
   const handleDownload = async (id) => {
     try {
       const token = localStorage.getItem("token");
-
+      //console.log("TOKEN:", token);
       const response = await axios.get(
-        `http://localhost:5000/api/certificates/download/${id}`,
+        `https://eventhub-ln9y.onrender.com/api/certificates/download/${id}`,
         {
           responseType: "blob",
           headers: {

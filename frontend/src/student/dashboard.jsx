@@ -74,21 +74,35 @@ const Dashboard = () => {
       {/* RECENT EVENTS */}
       <div>
         <h2 className="text-lg font-semibold mb-4">Recent Events</h2>
-        <div className="max-w-[720px] bg-blue-50 rounded-xl p-4 flex items-center gap-4">
-          {recentEvents.slice(0, 3).map((event) => (
-            <EventCard
-              key={event._id}
-              ev={{
-                day: new Date(event.date).getDate(),
-                month: new Date(event.date).toLocaleString("default", {
-                  month: "short",
-                }),
-                title: event.title,
-                date: new Date(event.date).toDateString(),
-                desc: event.description || "No description available",
-              }}
-            />
-          ))}
+
+        <div className="bg-blue-50 p-6 rounded-2xl flex flex-wrap gap-6">
+          {recentEvents.map((event) => {
+            const dateObj = new Date(event.date);
+            const day = dateObj.getDate();
+            const month = dateObj.toLocaleString("default", { month: "short" });
+
+            return (
+              <div
+                key={event._id}
+                className="flex items-center gap-4 bg-white rounded-xl shadow px-6 py-4 min-w-[260px]"
+              >
+                <div className="bg-blue-600 text-white rounded-lg text-center px-3 py-2 leading-tight">
+                  <p className="text-xl font-bold">{day}</p>
+                  <p className="text-sm">{month}</p>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold text-blue-700">{event.title}</h3>
+
+                  <p className="text-sm text-gray-500">
+                    {dateObj.toDateString()}
+                  </p>
+
+                  <p className="text-sm text-gray-600">{event.type}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 

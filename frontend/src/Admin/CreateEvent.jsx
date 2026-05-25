@@ -44,7 +44,7 @@ const CreateEvent = () => {
       });
 
       alert("Event Created Successfully!");
-      navigate("/event-admin/events");
+      navigate("/admin/events");
     } catch (err) {
       console.error("Create event error", err);
       alert("Error creating event");
@@ -57,7 +57,6 @@ const CreateEvent = () => {
         <h2 className="text-2xl font-bold mb-6">Create New Event</h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-
           {/* Title */}
           <div>
             <label className="block mb-2 font-medium">Event Title</label>
@@ -207,7 +206,6 @@ const CreateEvent = () => {
               Create Event
             </button>
           </div>
-
         </form>
       </div>
     </div>
