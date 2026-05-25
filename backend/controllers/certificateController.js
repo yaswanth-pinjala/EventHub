@@ -82,15 +82,32 @@ exports.downloadCertificate = async (req, res) => {
     const certificate = await Certificate.findById(req.params.id);
 
     if (!certificate) {
-      return res.status(404).json({ message: "Certificate not found" });
+      return res.status(404).json({
+        message: "Certificate not found",
+      });
     }
 
-    const filePath = path.join(__dirname, "..", certificate.certificateURL);
+    const filePath = path.join(
+      __dirname,
+      "..",
+      certificate.certificateURL
+    );
+
+    console.log("FILE PATH:", filePath);
+
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({
+        message: "Certificate file missing",
+      });
+    }
 
     res.download(filePath);
 
   } catch (error) {
     console.error("Download error:", error);
-    res.status(500).json({ message: "Download failed" });
+
+    res.status(500).json({
+      message: "Download failed",
+    });
   }
 };
